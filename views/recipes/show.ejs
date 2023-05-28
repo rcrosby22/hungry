@@ -1,0 +1,13 @@
+<!-- views/recipes/show.ejs -->
+<h1><%= recipe.title %></h1>
+<p>Ingredients: <%= recipe.ingredients.join(', ') %></p>
+<p>Instructions: <%= recipe.instructions %></p>
+
+<!-- Display reviews if available -->
+<h2>Reviews</h2>
+<% recipe.reviews.forEach(function(review) { %>
+  <article class="review">
+    <p>Rating: <%= review.rating %></p>
+    <p>Comment: <%= review.comment %></p>
+  </article>
+<% }) %>

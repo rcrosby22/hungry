@@ -1,0 +1,11 @@
+<!-- views/recipes/new.ejs -->
+<h1>Create a New Recipe</h1>
+<form id="add-recipe-form" action="/recipes" method="POST">
+  <label>Title:</label>
+  <input type="text" name="title">
+  <label>Ingredients:</label>
+  <textarea name="ingredients"></textarea>
+  <label>Instructions:</label>
+  <textarea name="instructions"></textarea>
+  <input type="submit" value="Add Recipe">
+</form>

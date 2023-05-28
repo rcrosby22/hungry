@@ -1,0 +1,12 @@
+<!-- views/recipes/index.ejs -->
+<h1>All Recipes</h1>
+<section id="badge-container">
+  <% recipes.forEach(function(recipe) { %>
+    <article class="badge">
+      <h2><%= recipe.title %></h2>
+      <p>Ingredients: <%= recipe.ingredients.join(', ') %></p>
+      <p>Instructions: <%= recipe.instructions %></p>
+      <!-- Add more details or styling as needed -->
+    </article>
+  <% }) %>
+</section>
