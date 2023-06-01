@@ -10,13 +10,16 @@
 </head>
 <body>
   <nav>
+    <a class="WebsiteName">hungryWell</a>
     <a href="/recipes" <%- title === 'All Recipes' ? 'class="active"' : '' %>>ALL RECIPES</a>
     <% if (user) { %>
       <a href="/recipes/new" <%- title === 'Add Recipes' ? 'class="active"' : '' %>>ADD Recipe</a>
       <a href="/logout">LOG OUT</a>
       <% } else { %>
-        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+        <a href="/auth/google" class="login">LOG IN&nbsp;</a>
         <% } %>
       </nav>
+      <div class="about section">
+    </div>
       <main>
-        
+       
