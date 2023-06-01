@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport')
-const recipesCtrl = require('../controllers/recipes');
-const ensureLoggedIn = require('../config/ensureLoggedIn');
 
-router.get('/new', ensureLoggedIn, recipesCtrl.new);
+
+// router.get('/', ensureLoggedIn, recipesCtrl.new);
 
 router.get('/', function(req, res, next) {
   res.redirect('/recipes');
 });
+// app.get('/recipes', recipesCtrl.index)
+
+router.get('/recipes/new', (req, res) => {
+  res.render('recipes/new', { title: 'Add Recipe' });
+});
+
+
+
 
 router.get('/auth/google', passport.authenticate(
   'google',

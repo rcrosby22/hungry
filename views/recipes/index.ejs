@@ -1,12 +1,34 @@
-<!-- views/recipes/index.ejs -->
-<h1>All Recipes</h1>
-<section id="badge-container">
-  <% recipes.forEach(function(recipe) { %>
-    <article class="badge">
-      <h2><%= recipe.title %></h2>
-      <p>Ingredients: <%= recipe.ingredients.join(', ') %></p>
-      <p>Instructions: <%= recipe.instructions %></p>
-      <!-- Add more details or styling as needed -->
-    </article>
-  <% }) %>
-</section>
+<%- include('../partials/header') %>
+<table id="list">
+  <thead>
+    <tr>
+      <th>Title</th> 
+      <th>Ingredients</th>
+      <th>Instructions</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% recipes.forEach(function(recipe) { %>
+      <tr>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.ingredients %></td>
+        <td><%= recipe.instructions %></td>
+      
+        <td>
+          <button>
+          <a class="details" href="/recipes/<%= recipe._id %>">DETAILS</a></td>
+        </button>
+        <td>
+          <% if (user && user._id.toString() === recipe.createdBy.toString()) { %>
+            <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+              <button type="submit">DELETE</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+<%- include('../partials/footer') %>

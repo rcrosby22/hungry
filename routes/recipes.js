@@ -15,4 +15,6 @@ router.get('/:id', recipesCtrl.show);
 // POST /recipes
 router.post('/', ensureLoggedIn, recipesCtrl.create);
 
+router.delete('/:id', ensureLoggedIn, recipesCtrl.delete)
+
 module.exports = router;

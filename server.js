@@ -38,7 +38,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(function(req,res,next){
-  res.lovals.user = req.user
+  res.locals.user = req.user
   next()
 })
 
@@ -62,6 +62,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 module.exports = app;

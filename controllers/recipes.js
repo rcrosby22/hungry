@@ -6,7 +6,8 @@ module.exports = {
   index,
   show,
   new: newRecipe,
-  create
+  create,
+  delete: deleteRecipe
 };
 
 async function index(req, res) {
@@ -17,15 +18,15 @@ async function index(req, res) {
 // Show recipe details
 async function show (req, res) {
   try {
-    const { recipeId } = req.params;
+    const {id} = req.params
 
-    const recipe = await Recipe.findById(recipeId).populate('reviews');
+    const recipe = await Recipe.findById(id).populate('reviews');
 
     if (!recipe) {
       return res.status(404).json({ error: 'Recipe not found' });
     }
 
-    res.render('show', { recipe });
+    res.render('recipes/show', { title: 'Details', recipe });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch recipe details' });
@@ -39,14 +40,53 @@ function newRecipe (req, res) {
 
 // Create a new recipe
 async function create  (req, res) {
+
   try {
-    const { title, ingredients, instructions } = req.body;
+    
+    const { title, ingredients, instructions, image } = req.body;
     const createdBy = req.user.id; // Assuming user authentication middleware is used
 
-    const recipe = await Recipe.create({ title, ingredients, instructions, createdBy });
-    res.redirect(`/recipes/${recipe._id}`);
+    await Recipe.create({ title, ingredients, instructions, createdBy, image });
+    
+    res.redirect('/recipes');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to create recipe' });
   }
-};
+
+function deleteRecipe(req, res, next) {
+  Recipe.findOne({'recipes._id': req.params.id, 'recipes.user':req.user._id}).then
+  (function(recipe) {
+    if (!recipe) return res.redirect('/recipes')
+    recipe.remove(req.params.id)
+  })
+}
+
+  };
+async function deleteRecipe (req, res, next) {
+  try {
+    const recipeId = req.params.id;
+    
+    // Find the recipe by ID
+    const recipe = await Recipe.findById(recipeId);
+    
+    console.log(recipe.createdBy)
+    // Check if the recipe exists
+    if (!recipe) {
+      return res.status(404).json({ error: 'Recipe not found' });
+    }
+
+    // user needs to be logged in and match
+    if (recipe.createdBy.toString() !== req.user.id) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    // Delete the recipe
+    await Recipe.findByIdAndDelete(recipeId);
+
+    res.redirect('/recipes')
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+}
