@@ -4,27 +4,25 @@ By: Ryan Crosby
 ####Linkedin|Github
 
 Description
-Have you ever thought about making something in your head and realized your missing a vital piece?  Well this is designed to accomadate the recipes that you have in your home.  We will pull from an api to generate recipes based off your items you have!
+Let hungryWell store your recipes so you dont have to worry about moms cook book getting pasta sauce and smearing generational recipes to be lost for good!  Here you can review other members recipes as well provide guidence and inspiration for your next meal. You can post and delete your own reviews, or recipes.  It will always be stored and safe from recipe droppings!
 Technologies Used
-HTML
+
 CSS
 JavaScript
 Node.js
 MongoDB
 express
+mongoose
+OAuth
 
 Instructions
 
-Have at least 2 data entities (data resources) in addition to the User Model - one entity that represents the main functional idea for your app and another with a One:Many or Many:Many relationship with that main entity (embedded or referenced).
-
-☐ Use OAuth authentication.
-
-☐ Implement basic authorization that restricts access to features that need a logged in user in order to work (typically CRD data operations) by "protecting" those routes from anonymous users using the ensureLoggedIn middleware from the OAuth lesson. In addition, ensure that editing and deletion of a data resource can only be done by the user that created that data (this is done in the controller - refer to the Guide to User-Centric CRD).
-
-☐ Have CRD data operations somewhere within the app's features. For example, you can have functionality that Creates a post and satisfy Delete functionality by implementing the ability to delete comments. - That's CREATE, READ, and DELETE. 
+Used OAuth google API to provide specific features for authenticated users. Store recipes into a database for all users.
 
 
 
 Future Updates
+
+Will be including a recipe search by ingredients to the site.
 
 Credits

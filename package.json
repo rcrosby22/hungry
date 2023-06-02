@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "HungryWell 05/025/2023 By: Ryan Crosby ####Linkedin|Github",
   "main": "server.js",
+  "private": true,
+
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "debug": "^4.3.4",
