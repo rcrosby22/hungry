@@ -3,12 +3,10 @@ var router = express.Router();
 const passport = require('passport')
 
 
-// router.get('/', ensureLoggedIn, recipesCtrl.new);
-
 router.get('/', function(req, res, next) {
   res.redirect('/recipes');
 });
-// app.get('/recipes', recipesCtrl.index)
+
 
 router.get('/recipes/new', (req, res) => {
   res.render('recipes/new', { title: 'Add Recipe' });

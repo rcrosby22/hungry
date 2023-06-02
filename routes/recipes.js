@@ -9,7 +9,7 @@ router.get('/', recipesCtrl.index);
 // GET /recipes/new
 router.get('/new', ensureLoggedIn, recipesCtrl.new);
 
-// GET /recipes/:id (show functionality) MUST be below new route
+
 router.get('/:id', recipesCtrl.show);
 
 // POST /recipes
